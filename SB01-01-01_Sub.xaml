@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="SB01_01_01_Sub" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/python" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="SB01_01_01_Sub" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/python" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
@@ -8,7 +8,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1078,3431</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1078,4443</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="68">
@@ -82,9 +82,10 @@
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SB01-01-01_Sub" sap:VirtualizedContainerService.HintSize="680,3226" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="SB01-01-01_Sub" sap:VirtualizedContainerService.HintSize="680,4238" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="vArticleDt" />
       <Variable x:TypeArguments="p:PythonObject" Name="vLoadPython" />
@@ -169,13 +170,13 @@
       </If.Else>
     </If>
     <ui:DatabaseConnect DatabaseConnection="[vDataBaseSession]" DisplayName="Connect" sap:VirtualizedContainerService.HintSize="638,59" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="System.Data.OleDb" ConnectionString="[&quot;Provider=Microsoft.ACE.OLEDB.12.0;Data Source=&quot; + in_PIDConfig(&quot;작업결과FolderPath&quot;).ToString + v작업결과DBFileName + &quot;;Persist Security Info=False;&quot;]" />
-    <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="638,1600" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_PIDConfig(&quot;KEYWORD&quot;).ToString.Split(&quot;,&quot;c)]">
+    <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="638,2612" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[in_PIDConfig(&quot;KEYWORD&quot;).ToString.Split(&quot;,&quot;c)]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="602,1466" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <Sequence DisplayName="본문" sap:VirtualizedContainerService.HintSize="602,2478" sap2010:WorkflowViewState.IdRef="Sequence_3">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="vTest" />
             </Sequence.Variables>
@@ -237,8 +238,8 @@
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:OpenBrowser>
-            <ui:BuildDataTable DataTable="[vResultDt]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="560,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;키워드&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;제목&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;본문&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;링크&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;등록일자&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-            <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[vArticleDt]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="560,51" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+            <ui:BuildDataTable DataTable="[vResultDt]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="560,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;키워드&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;제목&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;본문&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;링크&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;기사등록일자&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;등록일자&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
+            <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[vArticleDt]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="560,836" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
@@ -272,38 +273,76 @@
                         </ActivityAction>
                       </p:PythonScope.Body>
                     </p:PythonScope>
-                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{Item.ToString, row(&quot;Column1&quot;).ToString.Trim, vGetArticle.ToString.Trim, in_PIDConfig(&quot;URL_EDAILY&quot;).ToString + row(&quot;Column2&quot;).ToString.Trim, CDate(System.Text.RegularExpressions.Regex.Match(vGetDate.ToString.Split(Environment.NewLine.ToArray, StringSplitOptions.RemoveEmptyEntries)(0), &quot;[^가-핳&amp;&amp;\s]+&quot;).Value).ToString(&quot;yyyy-MM-dd&quot;)}]" DataTable="[vResultDt]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="410,22" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+                    <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{Item.ToString, row(&quot;Column1&quot;).ToString.Trim, vGetArticle.ToString.Trim, in_PIDConfig(&quot;URL_EDAILY&quot;).ToString + row(&quot;Column2&quot;).ToString.Trim, CDate(System.Text.RegularExpressions.Regex.Match(vGetDate.ToString.Split(Environment.NewLine.ToArray, StringSplitOptions.RemoveEmptyEntries)(0), &quot;[^가-핳&amp;&amp;\s]+&quot;).Value).ToString(&quot;yyyy-MM-dd&quot;), DateString}]" DataTable="[vResultDt]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="410,22" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
                   </Sequence>
                 </ActivityAction>
               </ui:ForEachRow.Body>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">False</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
             </ui:ForEachRow>
-            <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[vResultDt]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="560,328" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+            <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[vResultDt]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="560,555" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
                   </ActivityAction.Argument>
-                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="376,180" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                  <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="480,407" sap2010:WorkflowViewState.IdRef="Sequence_7">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:ExecuteQuery ContinueOnError="{x:Null}" DataTable="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Execute Query" ExistingDbConnection="[vDataBaseSession]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="insert into [ARTICLETABLE] values(@키워드, @제목, @본문, @링크, @등록일자)">
-                      <ui:ExecuteQuery.Parameters>
-                        <InArgument x:TypeArguments="x:String" x:Key="키워드">[item.ToString]</InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="제목">[row("제목").ToString]</InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="본문">[row("본문").ToString]</InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="링크">[row("링크").ToString]</InArgument>
-                        <InArgument x:TypeArguments="x:String" x:Key="등록일자">[row("등록일자").ToString]</InArgument>
-                      </ui:ExecuteQuery.Parameters>
-                    </ui:ExecuteQuery>
+                    <TryCatch sap2010:Annotation.AnnotationText="제목이 기본키" DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,315" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <TryCatch.Try>
+                        <ui:ExecuteQuery ContinueOnError="{x:Null}" DataTable="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Execute Query" ExistingDbConnection="[vDataBaseSession]" sap:VirtualizedContainerService.HintSize="334,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_1" Sql="INSERT INTO [ARTICLETABLE] VALUES(@키워드, @제목, @본문, @링크, @기사등록일자, @등록일자)">
+                          <ui:ExecuteQuery.Parameters>
+                            <InArgument x:TypeArguments="x:String" x:Key="키워드">
+                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="item.ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="제목">
+                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="row(&quot;제목&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="본문">
+                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="row(&quot;본문&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="링크">
+                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="row(&quot;링크&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="기사등록일자">
+                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="row(&quot;기사등록일자&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="등록일자">
+                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="row(&quot;등록일자&quot;).ToString" />
+                            </InArgument>
+                          </ui:ExecuteQuery.Parameters>
+                        </ui:ExecuteQuery>
+                      </TryCatch.Try>
+                      <TryCatch.Catches>
+                        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ActivityAction x:TypeArguments="s:Exception">
+                            <ActivityAction.Argument>
+                              <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                            </ActivityAction.Argument>
+                            <ui:Continue sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Continue_1" />
+                          </ActivityAction>
+                        </Catch>
+                      </TryCatch.Catches>
+                    </TryCatch>
                   </Sequence>
                 </ActivityAction>
               </ui:ForEachRow.Body>
@@ -318,7 +357,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEach>
-    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[vDBResultDt]" DisplayName="Execute Query" ExistingDbConnection="[vDataBaseSession]" sap:VirtualizedContainerService.HintSize="638,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_2" Sql="SELECT DISTINCT * FROM [ARTICLETABLE] WHERE 등록일자 BETWEEN Date()-30 AND Date();">
+    <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DataTable="[vDBResultDt]" DisplayName="Execute Query" ExistingDbConnection="[vDataBaseSession]" sap:VirtualizedContainerService.HintSize="638,88" sap2010:WorkflowViewState.IdRef="ExecuteQuery_2" Sql="SELECT DISTINCT * FROM [ARTICLETABLE] WHERE 등록일자 BETWEEN Date();">
       <ui:ExecuteQuery.Parameters>
         <scg:Dictionary x:TypeArguments="x:String, Argument" />
       </ui:ExecuteQuery.Parameters>
