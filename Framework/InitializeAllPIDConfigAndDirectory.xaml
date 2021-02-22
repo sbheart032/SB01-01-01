@@ -8,7 +8,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1024,2071</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1078,2066</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Initialization_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="46">
@@ -71,7 +71,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Initialize All PIDConfig And Local Directory" sap:VirtualizedContainerService.HintSize="696,1866" sap2010:WorkflowViewState.IdRef="Sequence_9">
+  <Sequence DisplayName="Initialize All PIDConfig And Local Directory" sap:VirtualizedContainerService.HintSize="696,1861" sap2010:WorkflowViewState.IdRef="Sequence_9">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="vPIDConfigFilePath" />
       <Variable x:TypeArguments="sd:DataTable" Name="vPIDConfigDt" />
@@ -156,7 +156,7 @@
               <OutArgument x:TypeArguments="x:Object">[out_PIDConfig("기초자료FolderPath")]</OutArgument>
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:Object">[in_Config("LocalWorkFolderPath").ToString + in_ProjectFolderName + "\기초자료\"]</InArgument>
+              <InArgument x:TypeArguments="x:Object">[in_Config("LocalWorkFolderPath").ToString + in_ProjectFolderName + "\기초자료\" + DateString + "\"]</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
@@ -164,15 +164,15 @@
               <OutArgument x:TypeArguments="x:Object">[out_PIDConfig("작업결과FolderPath")]</OutArgument>
             </ui:AssignOperation.To>
             <ui:AssignOperation.Value>
-              <InArgument x:TypeArguments="x:Object">[in_Config("LocalWorkFolderPath").ToString + in_ProjectFolderName + "\작업결과\"]</InArgument>
+              <InArgument x:TypeArguments="x:Object">[in_Config("LocalWorkFolderPath").ToString + in_ProjectFolderName + "\작업결과\" + DateString + "\"]</InArgument>
             </ui:AssignOperation.Value>
           </ui:AssignOperation>
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <If Condition="[Directory.Exists(out_PIDConfig(&quot;기초자료FolderPath&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="654,232" sap2010:WorkflowViewState.IdRef="If_3">
+    <If Condition="[Directory.Exists(out_PIDConfig(&quot;기초자료FolderPath&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="654,227" sap2010:WorkflowViewState.IdRef="If_3">
       <If.Else>
-        <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="334,84" sap2010:WorkflowViewState.IdRef="CreateDirectory_2" Path="[out_PIDConfig(&quot;기초자료FolderPath&quot;).ToString]" />
+        <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Folder" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="CreateDirectory_2" Path="[out_PIDConfig(&quot;기초자료FolderPath&quot;).ToString]" />
       </If.Else>
     </If>
     <If Condition="[Directory.Exists(out_PIDConfig(&quot;작업결과FolderPath&quot;).ToString)]" sap:VirtualizedContainerService.HintSize="654,232" sap2010:WorkflowViewState.IdRef="If_4">
